@@ -1,16 +1,20 @@
 {
   "version": 1,
-  "author": "Abdul Haq Suba",
+  "author": "BCA152",
   "editor": "wokwi",
   "parts": [
-    {
-      "type": "wokwi-esp32-devkit-v1",
-      "id": "esp",
-      "top": 0,
-      "left": 0,
-      "attrs": {}
-    }
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -120, "left": 120, "attrs": {} },
+    { "type": "wokwi-photoresistor-sensor", "id": "ldr1", "top": 120, "left": 120, "attrs": {} }
   ],
-  "connections": [],
-  "dependencies": {}
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.1", "dht1:GND", "black", [ "v0" ] ],
+    [ "esp:3V3", "dht1:VCC", "red", [ "v0" ] ],
+    [ "esp:D4", "dht1:SDA", "green", [ "v0" ] ],
+    [ "esp:GND.2", "ldr1:GND", "black", [ "v0" ] ],
+    [ "esp:3V3", "ldr1:VCC", "red", [ "v0" ] ],
+    [ "esp:D34", "ldr1:AO", "blue", [ "v0" ] ]
+  ]
 }
